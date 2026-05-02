@@ -1,4 +1,4 @@
-# Divyanshu Tomar Portfolio Website
+#  Portfolio Website
 
 A clean, recruiter-friendly personal portfolio website for GitHub Pages.
 
