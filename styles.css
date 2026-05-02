@@ -98,6 +98,20 @@ h1 {
   margin: 0;
   display: flex;
   justify-content: center;
+  position: relative;
+  animation: floatPortrait 5.5s ease-in-out infinite;
+}
+
+.hero-photo-wrap::before {
+  content: "";
+  position: absolute;
+  width: min(390px, 108%);
+  aspect-ratio: 1 / 1;
+  border-radius: 1.5rem;
+  background: conic-gradient(from 180deg, rgba(113, 160, 255, 0.25), rgba(139, 255, 222, 0.55), rgba(113, 160, 255, 0.25));
+  filter: blur(14px);
+  z-index: 0;
+  animation: rotateGlow 8s linear infinite;
 }
 
 .hero-photo {
@@ -107,6 +121,15 @@ h1 {
   border-radius: 1.2rem;
   border: 1px solid var(--border);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  animation: breathePhoto 4.2s ease-in-out infinite;
+}
+
+.hero-photo:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 24px 48px rgba(10, 16, 34, 0.6), 0 0 28px rgba(113, 160, 255, 0.25);
 }
 
 
@@ -145,6 +168,22 @@ h1 {
 .card-3d:hover {
   transform: perspective(900px) rotateX(4deg) rotateY(-6deg) translateY(-4px);
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+}
+
+
+@keyframes floatPortrait {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes breathePhoto {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @keyframes spinCube {
@@ -253,6 +292,15 @@ h2 {
   padding: 1.4rem 0 2rem;
   color: var(--muted);
   text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo-wrap,
+  .hero-photo-wrap::before,
+  .hero-photo,
+  .floating-cube {
+    animation: none;
+  }
 }
 
 @media (max-width: 900px) {
